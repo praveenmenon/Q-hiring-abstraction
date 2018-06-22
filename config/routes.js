@@ -109,7 +109,23 @@ const questionRoutes = [{
     tags: ['api']
   },
   handler: questionsController.getQuestions
-}]
+}, {
+    path: '/allQuestions',
+    method: 'GET',
+    config: {
+      auth: false,
+      cors: corsHeader
+    },
+    handler: questionsController.allQuestions
+  }, {
+    path: '/createQuestion',
+    method: 'POST',
+    config: {
+      auth: false,
+      cors: corsHeader
+    },
+    handler: questionsController.createQuestion
+  }]
 
 // const examRoutes = [{
 //   path: '/instruction',
