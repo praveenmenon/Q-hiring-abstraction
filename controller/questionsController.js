@@ -38,12 +38,12 @@ exports.getQuestions = (req, res) => {
   });
 }
 
-exports.getQuestion = (req, res) => {
+exports.getQuestion = (req, resp) => {
   return model.question.findOne({ raw: true, where: { id: req.params.id } }).then((question) => {
-    return { status: true, question }
+    return resp.response({ message: "Question fetched successfully", question }).code(200)
   }).catch((err) => {
     console.log("err ====", err)
-    return { error: 'error in while fetching', error: err }
+    return resp.response({ error: "error in while fetching" }).code(422)
   })
 }
 

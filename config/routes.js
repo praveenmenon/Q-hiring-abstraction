@@ -20,7 +20,7 @@ const welcomeRoute = [{
     description: 'Welcome to Q Hiring',
     cors: corsHeader,
     auth: false,
-    tags: ['api'],
+    tags: ['api']
   },
   handler: (request, reply) => {
     return { message: 'Welcome to Q Hiring' };
@@ -140,15 +140,33 @@ const questionRoutes = [{
 }]
 
 const resultRoutes = [{
-  path: '/results',
+  path: '/createResult',
   method: 'POST',
   config: {
     description: 'Create result',
     auth: false,
-    cors: corsHeader,
-    tags: ['api']
+    cors: corsHeader
   },
   handler: resultsController.createResult
+}, {
+  path: '/updateResult/{id}',
+  method: 'PUT',
+  config: {
+    description: 'Create result',
+    auth: false,
+    cors: corsHeader
+  },
+  handler: resultsController.updateResult
+},
+{
+  path: '/getResult/{id}',
+  method: 'GET',
+  config: {
+    description: 'Create result',
+    auth: false,
+    cors: corsHeader
+  },
+  handler: resultsController.getResult
 }]
 
 // const examRoutes = [{
@@ -238,4 +256,4 @@ const resultRoutes = [{
 // }]
 
 // module.exports = [].concat(welcomeRoute, userRoutes, examRoutes, questionRoutes, resultRoutes, feedbackRoutes);
-module.exports = [].concat(welcomeRoute, questionRoutes);
+module.exports = [].concat(welcomeRoute, questionRoutes, resultRoutes);
