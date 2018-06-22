@@ -39,10 +39,6 @@ exports.getQuestions = (req, res) => {
 }
 
 exports.createQuestion = (req, resp) => {
-  return authentication.validateUser(req).then((userExist) => {
-    if (userExist.userRole != 'admin') {
-      return resp.response({ message: 'You are not authorized to access the page!!' }).code(422)
-    } else {
       const question = {
         title: req.payload.title,
         option_1: req.payload.option_1,
@@ -59,24 +55,12 @@ exports.createQuestion = (req, resp) => {
         .catch((error) => {
           return resp.response({ error: error }).code(422)
         })
-    }
-  }).catch((err) => {
-    return { message: 'User does not exist', }
-  })
 }
 
 exports.allQuestions = (req, resp) => {
-  return authentication.validateUser(req).then((userExist) => {
-    if (userExist.userRole != 'admin') {
-      return resp.response({ message: 'You are not authorized to access the page!!' }).code(422)
-    } else {
       return model.question.findAll({ raw: true, attributes: { exclude: ['createdAt', 'updatedAt'] } }).then((questions) => {
         return resp.response({ message: "All questions listed successfully.", data: questions }).code(200)
       }).catch((error) => {
         return resp.response({ error: error }).code(422)
       })
-    }
-  }).catch((err) => {
-    return { message: 'User does not exist', }
-  })
 }
