@@ -4,7 +4,7 @@ const questionsController = require('../controller/questionsController')
 // const usersController = require('../controller/usersController')
 // const sessionsController = require('../controller/sessionsController')
 // const examsController = require('../controller/examsController')
-// const resultsController = require('../controller/resultsController')
+const resultsController = require('../controller/resultsController')
 // const feedbackController = require('../controller/feedbackController')
 
 const corsHeader = {
@@ -120,19 +120,36 @@ const questionRoutes = [{
     tags: ['api']
   },
   handler: questionsController.getQuestion
+},
+{
+  path: '/allQuestions',
+  method: 'GET',
+  config: {
+    auth: false,
+    cors: corsHeader
+  },
+  handler: questionsController.allQuestions
+}, {
+  path: '/createQuestion',
+  method: 'POST',
+  config: {
+    auth: false,
+    cors: corsHeader
+  },
+  handler: questionsController.createQuestion
 }]
 
-// const resultRoutes = [{
-//   path: '/findOneQuestion',
-//   method: 'GET',
-//   config: {
-//     description: 'Create result',
-//     auth: true,
-//     cors: corsHeader,
-//     tags: ['api']
-//   },
-//   handler: resultsController.createResult
-// }]
+const resultRoutes = [{
+  path: '/results',
+  method: 'POST',
+  config: {
+    description: 'Create result',
+    auth: false,
+    cors: corsHeader,
+    tags: ['api']
+  },
+  handler: resultsController.createResult
+}]
 
 // const examRoutes = [{
 //   path: '/instruction',
