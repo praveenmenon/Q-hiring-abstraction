@@ -109,7 +109,30 @@ const questionRoutes = [{
     tags: ['api']
   },
   handler: questionsController.getQuestions
+},
+{
+  path: '/findOneQuestion/{id}',
+  method: 'GET',
+  config: {
+    description: 'get one question',
+    auth: false,
+    cors: corsHeader,
+    tags: ['api']
+  },
+  handler: questionsController.getQuestion
 }]
+
+// const resultRoutes = [{
+//   path: '/findOneQuestion',
+//   method: 'GET',
+//   config: {
+//     description: 'Create result',
+//     auth: true,
+//     cors: corsHeader,
+//     tags: ['api']
+//   },
+//   handler: resultsController.createResult
+// }]
 
 // const examRoutes = [{
 //   path: '/instruction',

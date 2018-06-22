@@ -37,3 +37,13 @@ exports.getQuestions = (req, res) => {
     return { message: 'error in verbal section', error: err }
   });
 }
+
+exports.getQuestion = (req, res) => {
+  return model.question.findOne({ raw: true, where: { id: req.params.id } }).then((question) => {
+    console.log("question ====", question)
+    return { status: 'sucess', question }
+  }).catch((err) => {
+    console.log("err ====", err)
+    return { error: 'error in while fetching', error: err }
+  })
+}
