@@ -4,6 +4,7 @@
   "description": "Q-Hiring project abstraction layer",
   "main": "app.js",
   "scripts": {
+    "prod": "export NODE_ENV=production || SET \"NODE_ENV=production\" && npm start",
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha test/test.js",
     "start": "./node_modules/nodemon/bin/nodemon.js app.js",
     "test-watch": "nodemon --exec 'npm test'"
