@@ -5,4 +5,4 @@ ADD . /Q-hiring-abstraction
 RUN npm --version
 RUN npm install
 CMD npm start
-EXPOSE 3001
+EXPOSE 3002
