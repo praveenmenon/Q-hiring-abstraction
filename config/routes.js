@@ -111,7 +111,7 @@ const questionRoutes = [{
   handler: questionsController.getQuestions
 },
 {
-  path: '/findOneQuestion/{id}',
+  path: '/getQuestion/{id}',
   method: 'GET',
   config: {
     description: 'get one question',
