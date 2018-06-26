@@ -4,9 +4,11 @@ const Inert = require('inert');
 const Pack = require('./package');
 const models = require('./models');
 const routes = require('./config/routes');
+var env = process.env.NODE_ENV || 'development';
+var config = require('./config/config.json')[env];
 
 const server = Hapi.server({
-  host: 'localhost',
+  host: config.webhost,
   port: 3002
 });
 
