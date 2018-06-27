@@ -4,7 +4,7 @@ const questionsController = require('../controller/questionsController')
 // const usersController = require('../controller/usersController')
 // const sessionsController = require('../controller/sessionsController')
 // const examsController = require('../controller/examsController')
-// const resultsController = require('../controller/resultsController')
+const resultsController = require('../controller/resultsController')
 // const feedbackController = require('../controller/feedbackController')
 
 const corsHeader = {
@@ -20,7 +20,7 @@ const welcomeRoute = [{
     description: 'Welcome to Q Hiring',
     cors: corsHeader,
     auth: false,
-    tags: ['api'],
+    tags: ['api']
   },
   handler: (request, reply) => {
     return { message: 'Welcome to Q Hiring' };
@@ -109,23 +109,65 @@ const questionRoutes = [{
     tags: ['api']
   },
   handler: questionsController.getQuestions
+},
+{
+  path: '/getQuestion/{id}',
+  method: 'GET',
+  config: {
+    description: 'get one question',
+    auth: false,
+    cors: corsHeader,
+    tags: ['api']
+  },
+  handler: questionsController.getQuestion
+},
+{
+  path: '/allQuestions',
+  method: 'GET',
+  config: {
+    auth: false,
+    cors: corsHeader
+  },
+  handler: questionsController.allQuestions
 }, {
-    path: '/allQuestions',
-    method: 'GET',
-    config: {
-      auth: false,
-      cors: corsHeader
-    },
-    handler: questionsController.allQuestions
-  }, {
-    path: '/createQuestion',
-    method: 'POST',
-    config: {
-      auth: false,
-      cors: corsHeader
-    },
-    handler: questionsController.createQuestion
-  }]
+  path: '/createQuestion',
+  method: 'POST',
+  config: {
+    auth: false,
+    cors: corsHeader
+  },
+  handler: questionsController.createQuestion
+}]
+
+const resultRoutes = [{
+  path: '/createResult',
+  method: 'POST',
+  config: {
+    description: 'Create result',
+    auth: false,
+    cors: corsHeader
+  },
+  handler: resultsController.createResult
+}, {
+  path: '/updateResult/{id}',
+  method: 'PUT',
+  config: {
+    description: 'Create result',
+    auth: false,
+    cors: corsHeader
+  },
+  handler: resultsController.updateResult
+},
+{
+  path: '/getResult/{id}',
+  method: 'GET',
+  config: {
+    description: 'Create result',
+    auth: false,
+    cors: corsHeader
+  },
+  handler: resultsController.getResult
+}]
 
 // const examRoutes = [{
 //   path: '/instruction',
@@ -214,4 +256,4 @@ const questionRoutes = [{
 // }]
 
 // module.exports = [].concat(welcomeRoute, userRoutes, examRoutes, questionRoutes, resultRoutes, feedbackRoutes);
-module.exports = [].concat(welcomeRoute, questionRoutes);
+module.exports = [].concat(welcomeRoute, questionRoutes, resultRoutes);
